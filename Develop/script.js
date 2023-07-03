@@ -12,75 +12,110 @@ var passChar = ""
 
 function generatePassword(){
 
-  passLgth = window.prompt("Enter the legth you want your password from 8 to 128")
+          passLgth = window.prompt("Enter the legth you want your password from 8 to 128")
 
-  if(passLgth < 8 || passLgth > 128 ){
-    window.alert("Please enter in a valid amount")
-    return
-  }
- 
-  var lwrLetterChoice = window.prompt("Would you like to include lower case letters: Enter Y or N");
-  lwrLetterChoice = lwrLetterChoice.toUpperCase();
+          if(passLgth < 8 || passLgth > 128 ){
+            window.alert("Please enter in a valid amount")
+            return
+          }
 
-  var upperLetterChoice = window.prompt("Would you like to include upper case letters: Enter Y or N")
-  upperLetterChoice = upperLetterChoice.toUpperCase()
+          
+          var lwrLetterChoice = window.prompt("Would you like to include lower case letters: Enter Y or N");
+          lwrLetterChoice = lwrLetterChoice.toUpperCase();
 
-  var specCharChoice = window.prompt("Would you like to include special characters: Enter Y or N")
-  specCharChoice = specCharChoice.toUpperCase()
+          if(lwrLetterChoice !== "Y" && lwrLetterChoice !== "N"){
+            window.alert("Please enter a valid entry")
+            return
+          }
 
-  var passNumChoice = window.prompt('Would you like to include numbers: Enter Y or N')
-  passNumChoice = passNumChoice.toUpperCase()
+          var upperLetterChoice = window.prompt("Would you like to include upper case letters: Enter Y or N")
+          upperLetterChoice = upperLetterChoice.toUpperCase()
 
-  //need if statment for if user types letter other then y or n
+          if(upperLetterChoice !== "Y" && upperLetterChoice !== "N"){
+            window.alert("Please enter a valid entry")
+            return
+          }
 
-  
+          var specCharChoice = window.prompt("Would you like to include special characters: Enter Y or N")
+          specCharChoice = specCharChoice.toUpperCase()
 
+          if(specCharChoice !== "Y" && specCharChoice  !== "N"){
+            window.alert("Please enter a valid entry")
+            return
+          }
 
-  if (
-    lwrLetterChoice === "N" &&
-    upperLetterChoice === "N" &&
-    specCharChoice === "N" &&
-    passNumChoice === "N"){
-      window.alert("atleast one field must be Y")
-      return;
-    }
+          var passNumChoice = window.prompt('Would you like to include numbers: Enter Y or N')
+          passNumChoice = passNumChoice.toUpperCase()
 
-    //need to make the random generator
+          if(passNumChoice !== "Y" && passNumChoice  !== "N"){
+            window.alert("Please enter a valid entry")
+            return
+          }
 
-    if (lwrLetterChoice === "Y"){
-      passChar = passChar + lwrLetter
-    }
-    if (upperLetterChoice === "Y"){
-      passChar = passChar + upperLetter
-    }
-    if(specCharChoice === "Y"){
-      passChar = passChar + specChar
-    }
-    if (passNumChoice === "Y"){
-      passChar = passChar + passNum
-    }
+          
+
+          
 
 
-    var randomPassChar = passChar.split("")
-  
+          if (
+            lwrLetterChoice === "N" &&
+            upperLetterChoice === "N" &&
+            specCharChoice === "N" &&
+            passNumChoice === "N"){
+              window.alert("atleast one field must be Y")
+              return;
+            }
+
+            
+
+            if (lwrLetterChoice === "Y"){
+              passChar = passChar + lwrLetter
+            }
+            if (upperLetterChoice === "Y"){
+              passChar = passChar + upperLetter
+            }
+            if(specCharChoice === "Y"){
+              passChar = passChar + specChar
+            }
+            if (passNumChoice === "Y"){
+              passChar = passChar + passNum
+            }
 
 
-// console.log(passLgth)
-// console.log(lwrLetterChoice)
-// console.log(upperLetterChoice)
-// console.log(specCharChoice)
-// console.log(passNumChoice)
-console.log(passChar)
-console.log(randomPassChar)
+            var randomPassChar = passChar.split("")
+            var finalpass = ""
+            
+           
 
-}
+            for (var i = 0; i < passLgth; i++){
+              var index = Math.floor(Math.random() * randomPassChar.length)
+              finalpass = finalpass + randomPassChar[index]
+              }
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+          
 
-  passwordText.value = password;
+       
+
+
+        password = finalpass
+        passChar = ""
+      
+        return password
+       
+      }
+
+
+        
+
+
+
+
+        // Write password to the #password input
+        function writePassword() {
+          var password = generatePassword();
+          var passwordText = document.querySelector("#password");
+
+          passwordText.value = password;
 
 }
 
