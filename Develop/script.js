@@ -7,24 +7,18 @@ var lwrLetter = "abcdefghijklmnopqrstuvwxyz";
 var upperLetter = lwrLetter.toUpperCase();
 var specChar = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 var passNum ="0123456789"
+var passChar = ""
 
 
 function generatePassword(){
 
   passLgth = window.prompt("Enter the legth you want your password from 8 to 128")
 
-  if(passLgth < 8){
+  if(passLgth < 8 || passLgth > 128 ){
     window.alert("Please enter in a valid amount")
     return
   }
-   if (passLgth > 128){
-    window.alert("Please enter in a valid amount")
-    return
-   }
-  
-
-  //need if statment to check if lgth is within paramiter 
-
+ 
   var lwrLetterChoice = window.prompt("Would you like to include lower case letters: Enter Y or N");
   lwrLetterChoice = lwrLetterChoice.toUpperCase();
 
@@ -37,11 +31,38 @@ function generatePassword(){
   var passNumChoice = window.prompt('Would you like to include numbers: Enter Y or N')
   passNumChoice = passNumChoice.toUpperCase()
 
-  //need if statment for if all feild are equal to N
+  //need if statment for if user types letter other then y or n
+
+  
+
 
   if (
-    
-  )
+    lwrLetterChoice === "N" &&
+    upperLetterChoice === "N" &&
+    specCharChoice === "N" &&
+    passNumChoice === "N"){
+      window.alert("atleast one field must be Y")
+      return;
+    }
+
+    //need to make the random generator
+
+    if (lwrLetterChoice === "Y"){
+      passChar = passChar + lwrLetter
+    }
+    if (upperLetterChoice === "Y"){
+      passChar = passChar + upperLetter
+    }
+    if(specCharChoice === "Y"){
+      passChar = passChar + specChar
+    }
+    if (passNumChoice === "Y"){
+      passChar = passChar + passNum
+    }
+
+
+    var randomPassChar = passChar.split("")
+  
 
 
 // console.log(passLgth)
@@ -49,6 +70,8 @@ function generatePassword(){
 // console.log(upperLetterChoice)
 // console.log(specCharChoice)
 // console.log(passNumChoice)
+console.log(passChar)
+console.log(randomPassChar)
 
 }
 
